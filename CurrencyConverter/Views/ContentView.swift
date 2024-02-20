@@ -8,17 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var currencyManager: CurrencyManager
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            ConvertView()
+                .tabItem {
+                    Image(systemName: "dollarsign.circle.fill")
+                    Text("Convert")
+                }
+
+            HistoryListView()
+                .tabItem {
+                    Image(systemName: "list.bullet.circle.fill")
+                    Text("History")
+                }
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(CurrencyManager.shared)
 }
