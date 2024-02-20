@@ -94,9 +94,15 @@
 		721ED4262B84423300808DBC /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
-				721ED4272B84423300808DBC /* CurrencyConverterApp.swift */,
-				721ED4292B84423300808DBC /* ContentView.swift */,
-				721ED42B2B84423500808DBC /* Assets.xcassets */,
+				721ED4592B84434C00808DBC /* App */,
+				721ED4582B84434600808DBC /* Extensions */,
+				721ED4572B84433B00808DBC /* Managers */,
+				721ED4562B84432F00808DBC /* Models */,
+				721ED4552B84432700808DBC /* Resources */,
+				721ED4542B84431B00808DBC /* Services */,
+				721ED4532B84431400808DBC /* Utils */,
+				721ED4522B84430B00808DBC /* ViewModels */,
+				721ED4512B84430600808DBC /* Views */,
 				721ED42D2B84423500808DBC /* Preview Content */,
 			);
 			path = CurrencyConverter;
@@ -125,6 +131,80 @@
 				721ED4442B84423600808DBC /* CurrencyConverterUITestsLaunchTests.swift */,
 			);
 			path = CurrencyConverterUITests;
+			sourceTree = "<group>";
+		};
+		721ED4512B84430600808DBC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				721ED45A2B84437600808DBC /* Components */,
+				721ED4292B84423300808DBC /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		721ED4522B84430B00808DBC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		721ED4532B84431400808DBC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		721ED4542B84431B00808DBC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		721ED4552B84432700808DBC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				721ED42B2B84423500808DBC /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		721ED4562B84432F00808DBC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		721ED4572B84433B00808DBC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		721ED4582B84434600808DBC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		721ED4592B84434C00808DBC /* App */ = {
+			isa = PBXGroup;
+			children = (
+				721ED4272B84423300808DBC /* CurrencyConverterApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		721ED45A2B84437600808DBC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,6 +510,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +540,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
