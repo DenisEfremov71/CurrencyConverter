@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Manager {
+protocol CurrencyManageable {
     var exchangeRates: [CurrencyPair] { get }
     var lastCurrencyPair: CurrencyPair { get }
     var history: [Transaction] { get }
@@ -21,7 +21,7 @@ protocol Manager {
     func saveHistory(with historyPersistable: HistoryPersistable) async throws
 }
 
-class CurrencyManager: Manager, ObservableObject {
+class CurrencyManager: CurrencyManageable, ObservableObject {
     var timer: Timer?
 
     static let shared = CurrencyManager()
