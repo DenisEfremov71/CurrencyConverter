@@ -7,7 +7,21 @@
 
 import Foundation
 
-class CurrencyManager: ObservableObject {
+protocol Manager {
+    var exchangeRates: [CurrencyPair] { get }
+    var lastCurrencyPair: CurrencyPair { get }
+    var history: [Transaction] { get }
+    var errorMessage: String { get }
+    var total: Double { get }
+
+    func convert(fromCurrency: CurrencyCode, toCurrency: CurrencyCode, for amount: Double)
+    func loadLastCurrencyPair(with ratePersistable: RatePersistable) async throws
+    func saveLastCurrencyPair(_ base: CurrencyCode, _ quote: CurrencyCode, with ratePersistable: RatePersistable) async throws
+    func loadHistory(with historyPersistable: HistoryPersistable) async throws
+    func saveHistory(with historyPersistable: HistoryPersistable) async throws
+}
+
+class CurrencyManager: Manager, ObservableObject {
     var timer: Timer?
 
     static let shared = CurrencyManager()
@@ -53,8 +67,8 @@ class CurrencyManager: ObservableObject {
             DispatchQueue.main.async {
                 self.exchangeRates = ratePersistable.rates
             }
-        } catch let error as RateStoreError {
-            throw CurrencyManagerError.failedToLoadExchangeRates(error)
+        } catch RateStoreError.badURL {
+            throw CurrencyManagerError.failedToLoadExchangeRates(RateStoreError.badURL)
         } catch {
             throw error
         }
@@ -157,7 +171,7 @@ class CurrencyManager: ObservableObject {
     }
 
     func saveHistory(with historyPersistable: HistoryPersistable) async throws {
-        if history.isEmpty { return }
+        guard !history.isEmpty else { return }
         do {
             try await historyPersistable.saveHistory(history)
         } catch {

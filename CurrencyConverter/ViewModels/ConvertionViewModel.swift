@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ConvertViewModel: ObservableObject {
+class ConvertionViewModel: ObservableObject {
     private let currencyManager: CurrencyManager = CurrencyManager.shared
 
     @Published var total: Double = 0

@@ -12,7 +12,7 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            ConvertView()
+            ConvertionView()
                 .tabItem {
                     Image(systemName: "dollarsign.circle.fill")
                     Text("Convert")

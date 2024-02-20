@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ConvertView: View {
+struct ConvertionView: View {
     @EnvironmentObject var currencyManager: CurrencyManager
-    @StateObject var viewModel = ConvertViewModel()
+    @StateObject var viewModel = ConvertionViewModel()
     @State private var amount: String = ""
     @State private var showErrorAlert: Bool = false
     @FocusState private var isFocused: Bool
@@ -70,25 +70,20 @@ struct ConvertView: View {
 
                 Spacer()
             }
+            .scrollDismissesKeyboard(.interactively)
             .navigationBarBackButtonHidden()
             .navigationTitle("Currency Converter")
         }
         .task {
             do {
                 try await viewModel.loadLastCurrencyPair()
-            } catch {
-                // TODO: - Remove print
-                print(error.localizedDescription)
-            }
+            } catch {}
         }
         .onDisappear {
             Task {
                 do {
                     try await viewModel.saveLastCurrencyPair()
-                } catch {
-                    // TODO: - Remove print
-                    print(error.localizedDescription)
-                }
+                } catch {}
             }
         }
         .onReceive(currencyManager.$errorMessage, perform: { _ in
@@ -109,6 +104,6 @@ struct ConvertView: View {
 }
 
 #Preview {
-    ConvertView()
+    ConvertionView()
         .environmentObject(CurrencyManager.shared)
 }
