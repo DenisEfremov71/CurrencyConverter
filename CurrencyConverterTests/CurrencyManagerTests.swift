@@ -28,15 +28,16 @@ final class CurrencyManagerTests: XCTestCase {
         XCTAssertTrue(sut.exchangeRates.isEmpty)
     }
 
-//    func test_whenStartTimer_shouldFetchAllRates() {
-//        let exp = expectation(description: "RefreshRatesTimer")
-//        XCTAssertTrue(sut.exchangeRates.isEmpty)
-//        sut.startRefreshRatesTimer(with: CurrencyServiceMock(), timeInterval: 1, repeats: false) {
-//            exp.fulfill()
-//        }
-//        waitForExpectations(timeout: 1.5)
-//        XCTAssertTrue(!sut.exchangeRates.isEmpty)
-//    }
+    func test_whenTimerTriggers_shouldCallFetchAllRates() {
+        let exp = expectation(description: "RefreshRatesTimer")
+        let currencyServiceMock = CurrencyServiceMock()
+        XCTAssertTrue(!currencyServiceMock.getRatesCalled)
+        sut.startRefreshRatesTimer(with: currencyServiceMock, timeInterval: 0.5, repeats: false) {
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 1.0)
+        XCTAssertTrue(currencyServiceMock.getRatesCalled)
+    }
 
     func test_whenGetRatesCalled_servicesShouldBeCalled() async throws {
         let ratePersistableMock = RatePersistableMock()
