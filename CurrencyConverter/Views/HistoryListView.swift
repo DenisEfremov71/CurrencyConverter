@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HistoryListView: View {
     @EnvironmentObject var currencyManager: CurrencyManager
-    @StateObject var viewModel = HistoryListViewModel()
+    @StateObject var viewModel = HistoryListViewModel(currencyManager: CurrencyManager.shared)
     @State private var searchText = ""
     @State private var showErrorAlert: Bool = false
 

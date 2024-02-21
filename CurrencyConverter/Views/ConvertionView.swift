@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ConvertionView: View {
     @EnvironmentObject var currencyManager: CurrencyManager
-    @StateObject var viewModel = ConvertionViewModel()
+    @StateObject var viewModel = ConversionViewModel(currencyManager: CurrencyManager.shared)
     @State private var amount: String = ""
     @State private var showErrorAlert: Bool = false
     @FocusState private var isFocused: Bool

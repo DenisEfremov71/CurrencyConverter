@@ -8,17 +8,27 @@
 import Foundation
 
 final class FreeCurrencyService: CurrencyService {
-    func getRates(completion: @escaping (Result<CurrencyData, Error>) -> Void) {
-        let baseCurrency: CurrencyCode = .usd
-        let urlString = Constants.Urls.base + baseCurrency.quoteCurrenciesQuery() + baseCurrency.baseCurrencyQuery()
+    let url: URL?
+    let session: URLSessionProtocol
 
-        guard let url = URL(string: urlString) else {
+    init(url: URL? = URL.getCurrencyRatesURL, session: URLSessionProtocol = URLSession.shared) {
+        self.url = url
+        self.session = session
+    }
+
+    func getRates(completion: @escaping (Result<CurrencyData, Error>) -> Void) -> URLSessionTaskProtocol? {
+        guard let url = url else {
             completion(.failure(NetworkError.invalidUrl))
-            return
+            return nil
         }
 
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
+        let task = session.makeDataTask(with: url) { data, response, error in
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200, error == nil else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+
+            guard let data = data else {
                 completion(.failure(NetworkError.failedToGetData))
                 return
             }
@@ -29,7 +39,10 @@ final class FreeCurrencyService: CurrencyService {
             }
 
             completion(.success(currencyData))
+        }
 
-        }.resume()
+        task.resume()
+
+        return task
     }
 }

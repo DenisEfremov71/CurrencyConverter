@@ -8,11 +8,11 @@
 import Foundation
 
 protocol CurrencyManageable {
-    var exchangeRates: [CurrencyPair] { get }
-    var lastCurrencyPair: CurrencyPair { get }
-    var history: [Transaction] { get }
-    var errorMessage: String { get }
-    var total: Double { get }
+    var exchangeRates: [CurrencyPair] { get set }
+    var lastCurrencyPair: CurrencyPair { get set }
+    var history: [Transaction] { get set }
+    var errorMessage: String { get set }
+    var total: Double { get set }
 
     func convert(fromCurrency: CurrencyCode, toCurrency: CurrencyCode, for amount: Double)
     func loadLastCurrencyPair(with ratePersistable: RatePersistable) async throws
@@ -75,7 +75,7 @@ class CurrencyManager: CurrencyManageable, ObservableObject {
     }
 
     private func fetchAllRates(with currencyService: CurrencyService) {
-        currencyService.getRates { [weak self] result in
+        _ = currencyService.getRates { [weak self] result in
             guard let self = self else { return }
 
             switch result {

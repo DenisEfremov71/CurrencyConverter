@@ -8,11 +8,14 @@
 import Foundation
 
 protocol CurrencyService {
-    func getRates(completion: @escaping (Result<CurrencyData, Error>) -> Void)
+    var url: URL? { get }
+    var session: URLSessionProtocol { get }
+    func getRates(completion: @escaping (Result<CurrencyData, Error>) -> Void) -> URLSessionTaskProtocol?
 }
 
 enum NetworkError: Error {
     case invalidUrl
+    case invalidResponse
     case failedToGetData
     case failedToDecodeData
 }

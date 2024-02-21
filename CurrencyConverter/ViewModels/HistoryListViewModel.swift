@@ -8,7 +8,11 @@
 import Foundation
 
 class HistoryListViewModel: ObservableObject {
-    private let currencyManager: CurrencyManager = CurrencyManager.shared
+    let currencyManager: CurrencyManageable
+
+    init(currencyManager: CurrencyManageable) {
+        self.currencyManager = currencyManager
+    }
 
     @Published var transactions: [Transaction] = []
 
